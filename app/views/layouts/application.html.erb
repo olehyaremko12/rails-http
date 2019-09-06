@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homework6</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">Twitter</a>
+
+      <div class="collapse navbar-collapse d-flex justify-content-center">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/">Home</a>
+
+          <% if current_user %>
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: 'nav-item nav-link' %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-2">
+      <%= render partial: 'layouts/flash', flash: flash %>
+    </div>
+
+    <div class="container mt-5">
+      <%= yield %>
+    </div>
+  </body>
+</html>

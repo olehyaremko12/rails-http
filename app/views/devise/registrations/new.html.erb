@@ -1,0 +1,33 @@
+<div class="text-center">
+  <% resource.build_user_profile if resource.user_profile.nil? %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'devise-form' }) do |f| %>
+    <%= bootstrap_devise_error_messages! %>
+
+    <h1 class="h3 mb-3 font-weight-normal"><%= t('.sign_up') %></h1>
+
+    <%= f.fields_for :user_profile do |user_profile_form| %>
+      <%= user_profile_form.text_field :first_name,         class: 'form-control first-field', placeholder: true %>
+      <%= user_profile_form.text_field :last_name,          class: 'form-control inner-field', placeholder: true %>
+      <%= user_profile_form.date_field :birthday, class: 'form-control inner-field', placeholder: true %>
+    <% end %>
+
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control inner-field', placeholder: true %>
+
+    <%= f.fields_for :user_profile do |user_profile_form| %>
+      <%= user_profile_form.text_field :username, class: 'form-control inner-field', placeholder: true %>
+      <%= user_profile_form.text_field :bio,      class: 'form-control inner-field', placeholder: true %>
+    <% end %>
+
+    <%= f.password_field :password,              autocomplete: 'current-password', class: 'form-control inner-field', placeholder: true %>
+    <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control last-field',  placeholder: true %>
+
+    <% if @minimum_password_length %>
+      <small class="form-text text-muted"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></small>
+    <% end %>
+
+    <hr>
+    <%= f.submit t('.sign_up'), class: 'btn btn-primary btn-block' %>
+  <% end %>
+
+  <%= render 'devise/shared/links' %>
+</div>

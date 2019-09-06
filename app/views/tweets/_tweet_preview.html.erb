@@ -1,0 +1,18 @@
+<div class="card mb-3" id="tweet-<%= tweet.id %>">
+  <div class="card-body">
+    <h5 class="card-title">
+      <strong>
+        <%= tweet.user.user_profile.first_name %>
+        <%= tweet.user.user_profile.last_name %>
+      </strong>
+      @<%= tweet.user.user_profile.username %>
+      <small>
+        | <%= tweet.created_at&.strftime('%D')  %>
+      </small>
+    </h5>
+
+    <p class="card-text">
+      <%= tweet.content %>
+    </p>
+  </div>
+</div>

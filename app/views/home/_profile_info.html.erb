@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title">
+      <%= profile.username %>
+    </h3>
+    <h6 class="card-subtitle mb-2 text-muted">
+      <%= profile.first_name %>
+      <%= profile.last_name %>
+    </h6>
+    <hr>
+
+    <p class="card-text">
+          <span>
+            <strong>Date of birth:</strong>
+          </span>
+      <span>
+            <%= profile.birthday&.strftime('%D') %>
+          </span>
+    </p>
+    <p class="card-text">
+      <strong>Bio:</strong>
+      <%= profile.bio %>
+    </p>
+    <hr>
+    <p class="card-text my-tweets-section">
+      <strong>
+        <%= link_to 'My Tweets', tweets_path, class: 'card-link' %>:
+      </strong>
+      <%= profile.user.tweets.count %>
+    </p>
+
+    <p class="card-text">
+      <strong>
+        Comments:
+      </strong>
+      <%= profile.user.comments.count %>
+    </p>
+    <hr>
+
+    <%= link_to 'Edit', edit_user_profiles_path, class: 'card-link' %>
+  </div>
+</div>
